@@ -2,6 +2,8 @@ var friendsData     = require('../data/friends.js');
 
 var path      = require('path');
 
+
+
 module.exports = function(app){
 
   app.get('/api/friends', function(req, res){
@@ -23,7 +25,8 @@ module.exports = function(app){
       var totalDifference = 0;
 
 
-      for (var i = 0; i < 2; i++ ){
+      for (var k = 0; k < 2; k++ ){
+       
 
         totalDifference = totalDifference + Math.abs(friendsData[i].scores[k] - req.body.scores[k]);
 
@@ -41,7 +44,10 @@ module.exports = function(app){
     console.log("=============================");
     console.log("best person is " + friendsData[bestMatch].name + " and best score is " + bestDiff);
     console.log("=============================");
+
+
     friendsData.push(req.body);
+
 
     res.json({name: friendsData[bestMatch].name, photo: friendsData[bestMatch].photo}); // KEY LINE
     
